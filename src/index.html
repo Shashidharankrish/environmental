@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>IOT</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#eee">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#eee">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-status-bar-style" content="#eee">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <!-- css cdn  -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+</head>
+
+<body>
+  <app-root>
+    <div id="loader">
+      <div class="loader_css">
+        <ul class="loader_ex">
+          <li></li>
+          <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul></div>
+   
+    </div>
+  </app-root>
+<style>
+
+.loader_ex{
+	position: fixed;
+	z-index: 3;
+	margin: 0 auto;
+	left: 0;
+	right: 0;
+	top: 50%;
+	margin-top: -30px;
+	width: 160px;
+	height: 60px;
+  list-style: none;
+}
+
+@keyframes loadbars
+{
+  0%{
+		height: 10px;
+		margin-top: 25px;
+	}
+	50%{
+		height:50px;
+		margin-top: 0px;
+	}
+	100%{
+		height: 10px;
+		margin-top: 25px;
+	}    
+}
+.loader_ex li{
+	background-color: #20d0e6;
+    width: 10px;
+    height: 150px;
+    float: right;
+    margin-right: 5px;
+	}
+.loader_ex li:first-child{
+			-webkit-animation: loadbars 0.8s cubic-bezier(0.645,0.045,0.355,1) infinite 0s;
+		}
+.loader_ex li:nth-child(2){
+			-webkit-animation: loadbars 0.8s ease-in-out infinite -0.2s;
+		}
+	.loader_ex li:nth-child(3){
+			-webkit-animation: loadbars 0.8s ease-in-out infinite -0.4s;
+}
+.loader_ex li:nth-child(4){
+  -webkit-animation: loadbars 0.8s ease-in-out infinite -0.6s;
+}
+.loader_ex li:nth-child(5){
+  -webkit-animation: loadbars 0.8s ease-in-out infinite -0.8s;
+}
+
+.loader_css{
+  background: #0a0909a3;
+  width: 100%;
+  position: fixed;
+  z-index: 9999;
+  margin: 0 auto;
+  height: 100%;
+}
+
+
+</style>
+</body>
+
+</html>

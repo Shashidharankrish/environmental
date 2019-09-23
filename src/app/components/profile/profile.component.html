@@ -1,0 +1,84 @@
+<div class="row">
+  <div class="col-md-12 col-sm-12 col-12">
+    <h3 class="page_title">My Profile</h3>
+  </div>
+</div>
+<div class="row">
+	<div class="col-md-12 col-sm-12">
+		<div class="card">
+			<div class="card-body"> 
+
+				<form #signUpForm="ngForm" (ngSubmit)="signUpForm.valid && onSubmit(signUpForm)">
+					<div class="form-group row">
+							<div class="col-md-12 col-sm-12 col-12 circle_img">								
+									  <div class="circle">
+										<!-- User Profile Image -->
+										<img class="profile-pic" [src]="profileimage">							 
+								     </div>
+									  <div class="p-image">
+											<i class="fa fa-pencil-square-o upload-button" aria-hidden="true" title="Browse"></i>
+										<!-- <i class="fa fa-camera upload-button" title="Upload New image"></i> -->
+										 <input class="file-upload" type="file" accept="image/*" name="photo" ng2FileSelect [uploader]="uploader" />
+									  </div>
+									  <button type="button" class="btn btn-success btn-s upload_btn"  (click)="uploader.uploadAll()" >
+										<i class="fa fa-upload" aria-hidden="true"></i>&nbsp;Upload
+									</button>								  
+								 </div>
+								 
+								
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-3 col-form-label">First Name</label>
+						<div class="col-sm-9">
+							<input type="text" name="firstName" #firstName="ngModel" class="form-control"
+								[(ngModel)]="userEdit.firstName" required />
+							<span class="errorMessage" *ngIf="signUpForm.submitted && !firstName.valid">
+								First Name is required
+							</span>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-3 col-form-label">Last Name</label>
+						<div class="col-sm-9">
+							<input type="text" #lastName="ngModel" class="form-control"
+								[(ngModel)]="userEdit.lastName" name="lastName" required />
+							<span class="errorMessage" *ngIf="signUpForm.submitted && !lastName.valid">
+								Last Name is required
+							</span>
+						</div>
+
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-3 col-form-label">Email</label>
+						<div class="col-sm-9">
+							<input type="text" #email="ngModel" class="form-control"
+								[(ngModel)]="userEdit.email" name="email" required readonly />
+							<span class="errorMessage" *ngIf="signUpForm.submitted && !email.valid">
+								Email is required
+							</span>
+						</div>
+					</div>
+
+
+					<div class="form-group row">
+						<label class="col-sm-3 col-form-label">Select Roles</label>
+						<div class="col-sm-9">
+							<select class="form-control" [(ngModel)]="userEdit.roles" name="roles">
+								<option select disabled> Select Roles </option>
+								<option *ngFor="let role of allRoles" disabled [value]="role._id"
+									[selected]="role._id == userEdit.roles"> {{ role.roleName }} </option>
+							</select>
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label class="col-sm-3 col-form-label"></label>
+						<div class="col-sm-9">
+							<button type="submit" class="btn btn-primary save_btn">Save</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

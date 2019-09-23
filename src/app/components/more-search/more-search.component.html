@@ -1,0 +1,69 @@
+<div class="row">
+  <div class="col-md-12 col-sm-12 col-12 mb-2">
+    <div class="card mt-0 radius_border">
+      <div class="card-body p-md-5 p-sm-4 po-3">
+
+        <form class="example-form row" #f="ngForm" (ngSubmit)="onSubmit(f)" autocomplete="off">
+          <div class="col-md-3 col-sm-4 col-12">
+            <mat-form-field>
+              <input matInput name="startDate"  required [formControl]="queryField" type="text" (keydown)="onKeyDown($event)"
+                id="keyword" placeholder="Search for locations..." autofocus />
+              <input name="locationid" [formControl]="locationid" type="hidden" />
+            </mat-form-field>
+            <ul id="myInputautocomplete-list" class="autocomplete-items">
+              <li *ngFor="let result of serarchResults" class="filter-select-list" (click)="setvalue(result)">
+                {{result.locationName}}</li>
+            </ul>
+          </div>
+
+          <div class="col-md-3 col-sm-4 col-12">
+            <mat-form-field>
+              <mat-label>Select an option</mat-label>
+              <mat-select ngModel #unit="ngModel" required name="unit">
+                <mat-option value="">None</mat-option>
+                <mat-option value="temp">Temperature</mat-option>
+                <mat-option value="co">CO Level</mat-option>
+                <mat-option value="co2">Co2 Level</mat-option>
+                <mat-option value="humidity">Humidity</mat-option>
+                <mat-option value="n2">N2</mat-option>
+                <mat-option value="suspended_particles">Suspended Particles</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-3 col-sm-4 col-12">
+            <mat-form-field>
+              <input matInput [matDatepicker]="startDate" (click)="startDate.open()" name="startDate"  ngModel
+                #startDate="ngModel" placeholder="Start date">
+              <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
+              <mat-datepicker #startDate></mat-datepicker>
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-3 col-sm-4 col-12">
+            <mat-form-field>
+              <input matInput [matDatepicker]="endDate" (click)="endDate.open()" name="endDate"  ngModel
+                placeholder="End date" #endDate="ngModel">
+              <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
+              <mat-datepicker #endDate></mat-datepicker>
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-12 col-sm-12 col-12">
+            <button class="btn btn-primary mt-1 pull-right" type="submit" [disabled]="f.invalid || !queryField.value">Search</button>
+          </div>
+        </form>
+
+        <div class="row slide_down_div" [ngClass]="graph1 ? 'toggle_class_overlay' : ''">
+          <div class="col-md-12 col-sm-12 col-12">
+            <span class="close_default_btn" (click)="graph1toggle()"
+              [ngClass]="grph1_close_button ? 'd-block' : 'd-none'"><i class="fas fa-times"></i></span>
+            <div style="visibility: hidden" id="chartdiv" class="mt-2" style="width: 100%; height:370px"></div>
+            <div style="visibility: hidden" id="nodata" class="text-white text-center font-weight-bold mt-3" style="width: 100%; height:70px;position: absolute; top: 0;">
+            No Data Found
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

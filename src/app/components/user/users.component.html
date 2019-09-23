@@ -1,0 +1,43 @@
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-12">
+        <h3 class="page_title">User List</h3>
+    </div>
+</div>
+
+
+<div class="card">
+
+    <div class="card-body">
+        <div class="row mb-3" *ngIf="addEnabled()">  
+                <div class="col-md-6 col-sm-6 col-12">
+                    <button type="button"  class="btn btn-primary save_btn" id="" routerLink="/admin/adduser"> <i class="fa fa-plus mr-2" aria-hidden="true"></i> Add User
+                    </button>
+                </div>
+                </div>
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-12">  
+
+                <ngx-datatable class="material striped" [rows]="rows"
+                [columns]="columns" 
+                [columnMode]="'force'" 
+                [headerHeight]="40" 
+                [summaryRow]="true" 
+                [footerHeight]="40"
+                [scrollbarH]="true"
+                [limit]="10" [rowHeight]="'auto'">
+                </ngx-datatable>
+
+                <ng-template  #actionsTemplate let-row="row" let-value="value" >
+                    <div>
+                        <a *ngIf="editEnabled()" class="pr-2 border-right cursor"  title="Edit" [routerLink]="['/admin/edituser', row._id]"><i
+                                class="fa fa-pencil-square-o" aria-hidden="true" ></i></a>
+                        <a *ngIf="deleteEnabled()" class="pl-2 cursor" title="Delete" href="javascript:;" (click)="delete(row._id)"><i
+                                class="far fa-trash-alt" aria-hidden="true"></i> </a>
+                    </div>
+                </ng-template>
+
+            </div>
+        </div>
+    </div>
+</div>

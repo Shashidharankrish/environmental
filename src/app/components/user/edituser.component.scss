@@ -1,0 +1,59 @@
+.example-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.example-container > * {
+  width: 100%;
+}
+
+
+.input-header {
+	background-color: #327ebd;
+	color: white;
+	padding: 0 5px;
+}
+.input-container {
+	padding: 5px 15px 15px 15px;
+	
+}
+.input-component-holder {
+border: 1px solid #327ebd;
+background-color: white;
+
+h4 {
+	color: #327ebd;
+	margin: 14px 0;
+}
+
+mat-divider {
+	margin-bottom: 10px;
+}
+}
+.example-full-width {
+	width:50%;
+	margin:0 24px;
+	tr {
+		td {
+			mat-label {
+				padding-right:30px;
+			}
+			.mat-form-field {
+				width:100%;
+				min-width: 320px;
+			}
+		}
+	}
+}
+.add-user-form {
+	mat-card-header {
+	  margin:0 -8px;
+	  mat-card-title {
+		  font-size:18px !important;
+		  font-weight: bold;
+	  }
+	}
+	mat-card-actions {
+		margin:14px 0 20px 25px !important;
+	}
+}

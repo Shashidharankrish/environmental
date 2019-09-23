@@ -1,0 +1,342 @@
+@import "mixins";
+
+.navigation-bar {
+  position: fixed;
+  top:      0;
+  right:    0;
+  padding:  0 1rem;
+  z-index:            $navbar-zindex;
+  height:             $navbar-height;
+  //box-shadow:         $box-shadow;
+  background-color:   $navbar-bg;
+  
+  &.hidden {
+    top:  -$navbar-height - 10px;
+  }
+  
+  ul {
+    display:      flex;
+    margin:       0;
+    padding:      0;    
+    align-items:  center;
+    li {
+      display:  flex;
+      padding:  0.5em;
+    }
+  }
+  .navbar-brand {
+    display:      none;
+    text-align:   center;
+  }
+}
+
+/* navbar burger button */
+.nav-toggle-btn {
+
+  display:  none;
+  width:    2.2rem;
+  padding:  1rem 0;
+  position: absolute;
+  
+  span {
+    width:      100%;
+    height:     2px;
+    position:   absolute;
+    background: $black;
+    transform:  rotate(0deg);
+    transition: .25s ease-in-out;
+    
+    &:nth-child(1) {
+      top:                5px;
+      transform-origin:   left center;
+    }
+    
+    &:nth-child(2) {
+      top:                15px;
+      transform-origin:   left center;
+    }
+    &:nth-child(3) {
+      top:              25px;
+      transform-origin: left center;
+    }
+  }
+}
+
+/* navbar burger button animation*/
+.nav-toggle-btn.open {
+  span {
+    &:nth-child(1) {
+      transform:  rotate(45deg);
+      top:    2px;
+      left:   4px;
+    }
+    &:nth-child(2) {
+      width:    0%;
+      opacity:  0;
+    }
+    &:nth-child(3) {
+      transform:  rotate(-45deg);
+      top:        27px;
+      left:       4px;
+    }
+  }
+}
+
+@include media-breakpoint-down(lg){
+  .navigation-bar {
+    left: $sidebar-width-lg;
+  }
+}
+
+@include media-breakpoint-down(md) {
+  #minimizeSidebar {
+    display: none;
+  }
+  .nav-toggle-btn {
+    display: inline-block;
+  }
+  .navigation-bar {
+    left:  $sidebar-mini-width-md;
+    &:not(.sidebar-hidden) {
+      left: 0;
+    }
+    ul.left-ul {
+      display: none;
+    }
+    .navbar-brand {
+      display:  block;
+      width:    40%;
+    }
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .navigation-bar {
+    left: 0;
+    ul {
+      display: none;
+    }
+    .navbar-brand {
+      width: 100%;
+    }
+  }
+}
+
+
+.dropdown-menu.show {
+
+  right: 0 !important;
+  left: auto !important;
+  padding: 0;
+  margin-top: 15px;
+  }
+  
+  .dropdown-menu.show button{
+  border-bottom: 1px solid #ccc;
+  padding: 12px 17px;
+  }
+  
+  .dropdown-menu.show button:last-child{
+  border-bottom:none !important;
+  }
+  
+  .dropdown-menu.show:after {
+  position: absolute;
+  top: -20px;
+  right: 7px;
+  display: inline-block;
+  border-top: 14px solid transparent;
+  border-left: 14px solid #253240;
+  border-right: 0 solid #314052;
+  border-bottom: 14px solid transparent;
+  content: " ";
+  -webkit-transform: rotate(270deg);
+  transform: rotate(270deg);
+  }
+  
+  .dropdown-menu.show:before {
+  position: absolute;
+  top: -21px;
+  right: 7px;
+  display: inline-block;
+  border-top: 15px solid transparent;
+  border-left: 14px solid #2abd6c25;
+  border-right: 0 solid #202429;
+  border-bottom: 14px solid transparent;
+  content: " ";
+  -webkit-transform: rotate(270deg);
+  transform: rotate(270deg);
+  }
+  
+  .nav-item,.dropdown-item{
+  cursor:pointer;
+  }
+  
+  @media (min-width: 992px) {
+  .animate {
+  animation-duration: 0.3s;
+  -webkit-animation-duration: 0.3s;
+  animation-fill-mode: both;
+  -webkit-animation-fill-mode: both;
+  }
+  }
+  
+  @keyframes slideIn {
+  0% {
+  transform: translateY(1rem);
+  opacity: 0;
+  }
+  100% {
+  transform:translateY(0rem);
+  opacity: 1;
+  }
+  0% {
+  transform: translateY(1rem);
+  opacity: 0;
+  }
+  }
+  
+  @-webkit-keyframes slideIn {
+  0% {
+  -webkit-transform: transform;
+  -webkit-opacity: 0;
+  }
+  100% {
+  -webkit-transform: translateY(0);
+  -webkit-opacity: 1;
+  }
+  0% {
+  -webkit-transform: translateY(1rem);
+  -webkit-opacity: 0;
+  }
+  }
+  
+  .slideIn {
+  -webkit-animation-name: slideIn;
+  animation-name: slideIn;
+  }
+
+
+  .navigation-bar ul li{
+    color: #fff !important;
+  }
+
+  .ng-autocomplete{
+    width:300px !important;
+  }
+
+  #myInputautocomplete-list{
+    position: absolute;
+    //background: #fff;
+    display: block;
+    width: 300px;
+    padding: 0;
+    //border: 1px solid #ccc;
+    list-style: none;
+    max-height: 300px;
+    overflow-y: scroll;
+    border: 1px solid #253240;
+  }
+
+  #myInputautocomplete-list li{
+    color: #e8e4e4 !important;
+    display: inline-block;
+    background: #253240;
+    width: 100%;
+    border: 1px solid #314052;
+    border-top: 0px solid transparent !important;
+  }
+
+  #myInputautocomplete-list li:hover{
+    background:#314052;
+   
+  }
+
+  #keyword1{
+    display:none;
+  }
+
+  #keyword{
+    width:300px !important;
+    padding-left:40px;
+  }
+
+  .dropdown-menu{
+    background-color: #314052 !important;
+  }
+  
+  .dropdown-menu.show button{
+    border-bottom: 1px solid #282e34 !important;
+  }
+  
+  .dropdown-item{
+    color: #ccc !important;
+  }
+
+  .autocomplete {
+    position: relative;
+    display: inline-block;
+  }
+  
+
+
+
+  
+  .autocomplete-items {
+    position: absolute;
+    border: 1px solid #d4d4d4;
+    border-bottom: none;
+    border-top: none;
+    z-index: 99;
+    /*position the autocomplete items to be the same width as the container:*/
+    top: 100%;
+    left: 0;
+    right: 0;
+  }
+  
+  .autocomplete-items div {
+    padding: 10px;
+    cursor: pointer;
+    background-color: #fff; 
+    border-bottom: 1px solid #d4d4d4; 
+  }
+  
+  /*when hovering an item:*/
+  .autocomplete-items div:hover {
+    background-color: #e9e9e9; 
+  }
+  
+  /*when navigating through the items using the arrow keys:*/
+  .autocomplete-active {
+    background-color: red !important; 
+    color:red; 
+  }
+
+  .dropdown-item.active, .dropdown-item:active {
+    background-color: #282e34 !important;
+    }
+    
+    .dropdown-item:hover{
+    background-color:#253240 !important;
+    }
+
+    .search_icon_class{
+      position: absolute;
+      left: 9px;
+      z-index: 0;
+      top: 2px;
+      color: #aeb4bb;
+      padding: 5px 8px;
+      background: #253240;
+      border-bottom-right-radius: 17px;
+    }
+
+    .search_toggle_view{
+      color:#fff;
+      position:relative;
+      top:5px;
+    }
+
+    .toggle_form_search{
+        display:none;
+    }

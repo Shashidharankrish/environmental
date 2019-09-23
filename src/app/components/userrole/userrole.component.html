@@ -1,0 +1,57 @@
+<div class="row">
+  <div class="col-md-12 col-sm-12 col-12">
+    <h3 class="page_title">User Role</h3>
+  </div>
+</div>
+<div>
+<div class="row">
+<div class="col-md-12 col-sm-12">
+  <div class="card">
+    <div class="card-body">
+        <form  *ngIf="pages" [formGroup]="userRoleForm" novalidate (ngSubmit)="save()">
+
+          <div class="row">
+            <div class="form-group col-md-12 row">
+                <label class="col-sm-3 col-12 col-form-label">Select Roles</label>
+              <div class="col-sm-9 col-12">
+               <select id="userole" class="form-control" class="form-control" formControlName="userole" #roleid (change)="onChange($event.target.value)">
+                <option *ngFor="let role of roles" [value]="role._id">{{ role.roleName }}</option>
+              </select>
+            </div>
+            </div>
+
+
+              <div *ngFor="let page of objectKeys(userRoleForm.controls); let i = index;" class="form-group row col-md-12">
+                <div class="col-md-12 col-sm-12 col-12 row" *ngIf="userRoleForm.controls[page].controls">
+                    <label class="col-sm-3 col-12 col-form-label">{{labels[page]['name']}}</label>
+                    <div class="col-md-1 mr-3 col-sm-2 col-4 mt-1" formArrayName="{{page}}" *ngFor="let genre of objectKeys(userRoleForm.controls[page].controls); let i = index">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox"  class="custom-control-input" formControlName="{{genre}}"  [checked]="" (change)="this.value = $event.target.checked ? 1 : 0">
+                            <label class="custom-control-label" for="rme1"> {{labels[page]['action'][genre]}} </label>
+                        </div>
+                    </div>
+
+                    
+                <!-- <label class="col-sm-2 col-12 col-form-label" formArrayName="{{page}}" *ngFor="let genre of objectKeys(userRoleForm.controls[page].controls); let i = index">
+                                  
+                  <input type="checkbox" formControlName="{{genre}}"  [checked]="" (change)="this.value = $event.target.checked ? 1 : 0">
+                  {{labels[page]['action'][genre]}} 
+                </label> -->
+                </div>
+              </div>
+
+              <!-- <pre>{{userRoleForm.value | json}}</pre> -->
+
+              <div class="form-group col-md-12 row">
+                  <label class="col-sm-3 col-12 col-form-label"></label>
+                <div class="col-sm-9 col-12">
+                    <button type="submit" class="btn btn-primary save_btn" [disabled]="!userRoleForm.valid">Submit</button>
+              </div>
+              </div>
+           
+          </div>
+        </form>
+    </div>
+  </div>
+</div>
+</div>

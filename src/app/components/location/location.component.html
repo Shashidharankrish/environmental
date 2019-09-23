@@ -1,0 +1,57 @@
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-12">
+        <h3 class="page_title">Location List</h3>
+    </div>
+</div>
+<div>
+    <div class="card">
+
+        <div class="card-body">
+            <div class="row mb-3">
+                <div class="col-md-6 col-sm-6 col-12">
+                    <a href="javascript:;" class="btn btn-primary save_btn" (click)="newLocation()">
+                        <i class="fa fa-plus-circle"></i> New Location
+                    </a>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-12">
+                    <ngx-datatable class="material striped" [rows]="rows"
+                        [columns]="columns" [columnMode]="'force'" [headerHeight]="40" [summaryRow]="true"
+                        [footerHeight]="40" [scrollbarH]="true" [limit]="10" [rowHeight]="'auto'">
+                    </ngx-datatable>
+
+                    <ng-template #actionsTemplate let-row="row" let-value="value">
+                        <div>
+                            <a class="pr-2 border-right cursor" title="Edit" href="javascript:;"
+                                (click)="editLocation(row)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                            <a class="pl-2  cursor" title="Delete" href="javascript:;" (click)="delete(row)">
+                                    <i class="far fa-trash-alt"></i> </a>
+                        </div>
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="modal fade" bsModal #editorModal="bs-modal" (onHidden)="onEditorModalHidden()"
+        [config]="{backdrop: 'static'}" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title pull-left">
+                        {{editingThingName ? ('Edit ' + editingThingName.name) : 'New Location'}}</h4>
+                    <button type="button" class="close pull-right" title="Close" (click)="editorModal.hide()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <app-add-edit-location #locationEditor></app-add-edit-location>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

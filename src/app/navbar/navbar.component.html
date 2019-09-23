@@ -1,0 +1,95 @@
+<nav class="navbar navigation-bar"  [class.hidden]="cmnSrv.dashboardState.navbarToggle" [class.sidebar-hidden]="cmnSrv.dashboardState.sidebarToggle">
+
+  <div class="container-fluid responsive_sidbar">
+<div class="row">
+  <div class="col-3">
+      <div class="nav-toggle-btn" [class.open]="!cmnSrv.dashboardState.sidebarToggle" (click)="cmnSrv.sidebarToggle()">
+          <span *ngFor="let number of [0,1,2]"></span>
+        </div>
+  </div>
+
+   <div class="col-5">
+      <div class="navbar-brand d-block d-sm-none d-md-none">
+          <a>
+            IOT ADMIN
+          </a> 
+        </div>
+   </div>
+
+   <div class="col-2 text-center">
+    <span class="search_toggle_view d-block d-sm-none d-md-none"> <i class="fas fa-search-location"></i> </span>
+  </div>
+
+    <div class="col-2">
+        <ul class="right-ul d-block d-sm-none  float-right">
+            <li class="nav-item" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             <i class="material-icons ml-1">person</i>
+                <div class="dropdown slideIn"> 
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                <button class="dropdown-item" type="button" (click)="profile()">Profile</button>
+                <button class="dropdown-item" type="button" (click)="changePassword()">Change Password</button>
+                <button class="dropdown-item" type="button" (click)="logout()">Logout</button>
+
+                <!-- <button class="dropdown-item" type="button">Something else here</button> --> </div>
+                </div>
+                </li>
+          </ul>
+     </div>
+
+     <div class="col-md-12 col-12 col-sm-12">
+       <div class="toggle_form_search">    
+             <form autocomplete="off">
+        <input [formControl]="queryField" type="text" (keydown)="onKeyDown($event)" class="form-control" id="keyword1" placeholder="Search for locations..." autofocus />
+      </form>
+        <ul id="myInputautocomplete-list" class="autocomplete-items">
+            <li *ngFor="let result of serarchResults" class="filter-select-list" (click)="setvalue(result)">
+             {{result.locationName}}</li>
+            </ul>
+       </div>
+     </div>
+</div>
+</div>
+
+  
+  <div class="navbar-brand d-none d-sm-block d-md-none">
+    <a>
+        <!-- <img class="brandImg" src="http://via.placeholder.com/60x60" alt="brandImg"> -->
+      IOT ADMIN
+    </a>
+  </div>
+  
+  <ul class="left-ul">
+    <li>
+      <button id="minimizeSidebar" class="btn btn-just-icon btn-round btn-light" (click)="cmnSrv.sidebarMiniToggle()">
+        <i *ngIf="!cmnSrv.dashboardState.sidebarMiniToggle" class="material-icons sd-visible">more_vert</i>
+        <i *ngIf="cmnSrv.dashboardState.sidebarMiniToggle" class="material-icons sdm-visible">view_list</i>
+      </button>
+    </li>
+    
+  </ul> 
+  <ul class="right-ul">
+      <li class="nav-item mr-4">
+          <div class="autocomplete">
+            <form autocomplete="off">
+                <span class="search_icon_class"> <i class="fas fa-search-location"></i> </span>
+              <input [formControl]="queryField" type="text" (keydown)="onKeyDown($event)" class="form-control" id="keyword" placeholder="Search for locations..." autofocus />
+            </form>
+              <ul id="myInputautocomplete-list" class="autocomplete-items">
+                  <li *ngFor="let result of serarchResults" class="filter-select-list" (click)="setvalue(result)">
+                   {{result.locationName}}</li>
+                  </ul>
+          </div>
+        </li>
+
+    <li class="nav-item" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+       Welcome, {{username}}<i class="material-icons ml-1">person</i>&nbsp;
+        <div class="dropdown slideIn"> 
+        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+        <button class="dropdown-item" type="button" (click)="profile()">Profile</button>
+        <button class="dropdown-item" type="button" (click)="changePassword()">Change Password</button>
+        <button class="dropdown-item" type="button" (click)="logout()">Logout</button>
+        <!-- <button class="dropdown-item" type="button">Something else here</button> --> </div>
+        </div>
+        </li>
+  </ul>
+</nav>

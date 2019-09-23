@@ -1,0 +1,28 @@
+<div class="sidebar"  [class.hide]="cmnSrv.dashboardState.sidebarToggle">
+  <div class="sidebar-header align-middle">
+    <!-- <img class="brandImg" src="http://via.placeholder.com/60x60" alt="brandImg"> -->
+    <span class="text-uppercase p-3">IOT</span><strong class="heading text-uppercase d-inline-block mini-hide">ADMIN</strong>
+   
+  </div>
+  <hr class="underline"> 
+  <div class="sidebar-body">
+     <ul>
+      <li *ngFor="let item of sidebarItems;let i = index;" class="sidebar-item" [class.active]="temp.isActive" #temp="routerLinkActive" routerLinkActive  [routerLinkActiveOptions]="{exact: true}">
+        <a *ngIf="!item.subItem"  [routerLink]="item.link" ><i class="material-icons">{{item.icon}}</i><strong class="mini-hide text-capitalize ">{{item.label}}</strong><span class="arrow mini-hide" ></span></a>
+        <!-- if sub menu  -->
+        <a *ngIf="!!item.subItem" data-toggle="collapse" [href]="'#'+item.label.split(' ').join('')" [class.collapsed]="!temp.isActive"  ><i class="material-icons">{{item.icon}}</i><strong class="text-capitalize mini-hide">{{item.label}}</strong><i class="toggle-icon material-icons">expand_less</i></a>
+        <div *ngIf="!!item.subItem" class="collapse" [class.show]="temp.isActive || currentUrl.includes('edituser') || currentUrl.includes('editshift')" [id]="item.label.split(' ').join('')">
+          <li *ngFor="let subIteml1 of item.subItem" class="sidebar-sub-item" routerLinkActive="active">
+            <a *ngIf="!subIteml1.subItem" [routerLink]=subIteml1.link><i class="material-icons">{{subIteml1.icon}}</i><strong class="text-capitalize mini-hide"> {{subIteml1.label}} </strong><span class="arrow mini-hide"></span></a>
+            <!-- if sub menu level 2 -->
+            <a *ngIf="!!subIteml1.subItem" data-toggle="collapse" [href]="'#'+subIteml1.label.split(' ').join('')" [class.collapsed]="!temp.isActive"  ><i class="material-icons">{{subIteml1.icon}}</i><strong class="text-capitalize mini-hide">{{subIteml1.label}}</strong><i class="toggle-icon material-icons">expand_less</i></a>
+            <div *ngIf="!!subIteml1.subItem" class="collapse"  [class.show]="temp.isActive || currentUrl.includes('edituser') || currentUrl.includes('editshift')" [id]="subIteml1.label.split(' ').join('')">
+              <li *ngFor="let subIteml2 of subIteml1.subItem" class="sidebar-sub-item-2" routerLinkActive="active"><a [routerLink]=subIteml2.link><i class="material-icons">{{subIteml2.icon}}</i><strong class="text-capitalize mini-hide"> {{subIteml2.label}} </strong><span class="arrow mini-hide"></span></a></li>
+            </div>
+          </li>  
+        </div> 
+      </li> 
+    </ul> 
+  </div>
+</div>
+<div *ngIf="!cmnSrv.dashboardState.sidebarToggle" class="sidebarOutside" (click)="cmnSrv.sidebarToggle()" ></div>

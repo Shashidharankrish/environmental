@@ -1,0 +1,97 @@
+<div class="row">
+  <div class="col-md-12 col-sm-12 col-12">
+    <h3 class="page_title">Edit User</h3>
+  </div>
+</div>
+<div class="row">
+	<div class="col-md-12 col-sm-12">
+		<div class="card">
+			<div class="card-body">
+
+				<form #signUpForm="ngForm" (ngSubmit)="signUpForm.valid && onSubmit(signUpForm)">
+					<div class="form-group row">
+						<label class="col-sm-3 col-form-label">First Name</label>
+						<div class="col-sm-9">
+							<input type="text" name="firstName" #firstName="ngModel" class="form-control"
+								[(ngModel)]="userEdit.firstName" required />
+							<span class="errorMessage" *ngIf="signUpForm.submitted && !firstName.valid">
+								First Name is required
+							</span>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-3 col-form-label">Last Name</label>
+						<div class="col-sm-9">
+							<input type="text" #lastName="ngModel" class="form-control"
+								[(ngModel)]="userEdit.lastName" name="lastName" required />
+							<span class="errorMessage" *ngIf="signUpForm.submitted && !lastName.valid">
+								Last Name is required
+							</span>
+						</div>
+
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-3 col-form-label">Email</label>
+						<div class="col-sm-9">
+							<input type="email" #email="ngModel" email="true" class="form-control"
+								[(ngModel)]="userEdit.email" name="email" required readonly />
+							<span class="errorMessage" *ngIf="signUpForm.submitted && !email.valid">
+								Email is required
+							</span>
+						</div>
+					</div>
+
+
+					<div class="form-group row">
+						<label class="col-sm-3 col-form-label">Select Roles</label>
+						<div class="col-sm-9">
+							<select class="form-control" [(ngModel)]="userEdit.roles" name="roles">
+								<option select disabled> Select Roles </option>
+								<option *ngFor="let role of allRoles" [value]="role._id"
+									[selected]="role._id == userEdit.roles"> {{ role.roleName }} </option>
+							</select>
+							<!--<span class="errorMessage" *ngIf="signUpForm.submitted && !roles.valid">
+						Role is required
+					</span>-->
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-3 col-form-label">Select Location</label>
+						<div class="col-sm-9">
+							<select class="form-control" [(ngModel)]="userEdit.locations" name="locations">
+								<option select disabled> Select default location </option>
+								<option *ngFor="let location of allLocations" [value]="location._id"
+									[selected]="location._id == userEdit.locations"> {{ location.locationName }} </option>
+							</select>
+							<!--<span class="errorMessage" *ngIf="signUpForm.submitted && !roles.valid">
+						Role is required
+					</span>-->
+						</div>
+					</div>
+
+					<!-- <div class="form-group row">
+						<label class="col-sm-3 col-form-label">Select Locations</label>
+						<div class="col-sm-9">
+							<select class="form-control" formControlName="locations" name="locations" [ngClass]="{ 'is-invalid': submitted && f.locations.errors }" required>
+								<option  value="" disabled selected> Select default location </option>
+								<option *ngFor="let location of allLocations" [value]="location._id"> {{ location.locationName }}
+								</option>
+							</select>
+							<div *ngIf="submitted && f.locations.errors" class="invalid-feedback">
+								<div *ngIf="f.locations.errors.required">Location is required</div>
+							</div>
+						</div>
+					</div> -->
+
+
+					<div class="form-group row">
+						<label class="col-sm-3 col-form-label"></label>
+						<div class="col-sm-9">
+							<button type="submit" class="btn btn-primary save_btn">Save</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

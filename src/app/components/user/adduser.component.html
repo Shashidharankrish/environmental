@@ -1,0 +1,94 @@
+<div class="row">
+	<div class="col-md-12 col-sm-12 col-12">
+		<h3 class="page_title">Add User</h3>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12 col-sm-12">
+		<div class="card">
+			<div class="card-body">
+				<form [formGroup]="signUpForm" (ngSubmit)="onSubmit()" autocomplete="off">
+					<div class="form-group row">
+						<label class="col-sm-3 col-form-label">First Name</label>
+						<div class="col-sm-9">
+							<input type="text" placeholder="First Name"  
+								class="form-control" formControlName="firstName" name="firstName" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" required  />
+								<div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+									<div *ngIf="f.firstName.errors.required">First Name is required</div>
+								</div>								 
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-3 col-form-label">Last Name</label>
+						<div class="col-sm-9">
+							<input type="text" placeholder="Last Name" formControlName="lastName"  class="form-control"
+								 name="lastName" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }"  required />
+								 <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+									<div *ngIf="f.lastName.errors.required">Last Name is required</div>
+								</div>
+						</div>
+
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-3 col-form-label">Email</label>
+						<div class="col-sm-9">
+							<input type="email" placeholder="Email" class="form-control" formControlName="email"
+								 name="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" required />
+								 <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+									<div *ngIf="f.email.errors.required">Email is required</div>
+									<div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+								</div>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-3 col-form-label">Password</label>
+						<div class="col-sm-9">
+							<input type="password" placeholder="Password" class="form-control"
+							formControlName="password" name="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" required />
+							<div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+								<div *ngIf="f.password.errors.required">Password is required</div>
+								<div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+							</div>
+							
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label class="col-sm-3 col-form-label">Select Roles</label>
+						<div class="col-sm-9">
+							<select class="form-control" formControlName="roles" name="roles" [ngClass]="{ 'is-invalid': submitted && f.roles.errors }" required>
+								<option  value="" disabled selected> Select Roles </option>
+								<option *ngFor="let role of allRoles" [value]="role._id"> {{ role.roleName }}
+								</option>
+							</select>
+							<div *ngIf="submitted && f.roles.errors" class="invalid-feedback">
+								<div *ngIf="f.roles.errors.required">Role is required</div>
+							</div>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-3 col-form-label">Select Locations</label>
+						<div class="col-sm-9">
+							<select class="form-control" formControlName="locations" name="locations" [ngClass]="{ 'is-invalid': submitted && f.locations.errors }" required>
+								<option  value="" disabled selected> Select default location </option>
+								<option *ngFor="let location of allLocations" [value]="location._id"> {{ location.locationName }}
+								</option>
+							</select>
+							<div *ngIf="submitted && f.locations.errors" class="invalid-feedback">
+								<div *ngIf="f.locations.errors.required">Location is required</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label class="col-sm-3 col-form-label"></label>
+						<div class="col-sm-9">
+							<button type="submit" class="btn btn-primary save_btn">Save</button>
+							<button type="reset" (click)="resetForm()" class="btn btn-primary save_btn ml-1 reset_btn">Reset</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

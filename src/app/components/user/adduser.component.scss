@@ -1,0 +1,103 @@
+.example-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.example-container > * {
+  width: 100%;
+}
+
+
+.input-header {
+	background-color: #327ebd;
+	color: white;
+	padding: 0 5px;
+}
+.input-container {
+	padding: 5px 15px 15px 15px;
+	
+}
+.input-component-holder {
+border: 1px solid #327ebd;
+background-color: white;
+
+h4 {
+	color: #327ebd;
+	margin: 14px 0;
+}
+
+mat-divider {
+	margin-bottom: 10px;
+}
+}
+.example-full-width {
+	width:50%;
+	margin:0 24px;
+	tr {
+		td {
+			mat-label {
+				padding-right:30px;
+			}
+			.mat-form-field {
+				width:100%;
+				min-width: 320px;
+			}
+		}
+	}
+}
+.add-user-form {
+	mat-card-header {
+	  margin:0 -8px;
+	  mat-card-title {
+		  font-size:18px !important;
+		  font-weight: bold;
+	  }
+	}
+	mat-card-actions {
+		margin:14px 0 20px 25px !important;
+	}
+}
+
+.save_btn {
+	width: 100px !important;
+	padding: 10px;
+}
+
+.reset_btn {
+    background-color: #ccc !important;
+   // border: 1px solid #ccc !important;
+}
+
+
+
+
+.url_img_src{
+	// display: block;
+	// width: 200px;
+	// height: 110px;
+	// margin-top: 10px;
+	 border-radius: 4px;
+	// overflow: hidden;
+
+}
+
+input[type="file"] {
+	display: none;
+}
+.custom-file-upload {
+	border: 1px solid #ccc;
+	display: inline-block;
+	padding: 6px 12px;
+	cursor: pointer;
+	width: auto;
+	border-radius: 4px;
+	font-weight: bold;
+	background: #03a9f3;
+	color: #fff;
+}
+.fa-cloud-upload{
+	float: left;
+    font-size: 25px;
+    margin-right: 20px;
+    color: #fff;
+}

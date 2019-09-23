@@ -1,0 +1,160 @@
+<!--- first row -->
+<div class="row dashboard_div">
+  <div class="col-md-2 col-sm-3 col-6 mb-4" (click)="changeGraph('temperature', 'Temprature')">
+    <div class="card_body_sec pb-3">
+      <div class="body_head_div p-1 pl-3 mb-2 ">
+        <h1 class="font-weight-bold"> Temprature </h1>
+      </div>
+      <div class="round_border d-flex justify-content-center">
+        <h3 class="mt-2 count" [ngClass]="temperatureColor">
+          <ng2-odometer [number]="currentTemperature" [config]="{ auto: true }"></ng2-odometer> <sup>0</sup> C
+        </h3>
+      </div>
+      <h6 class="range_status text-center">{{temperatureLebel}}</h6>
+    </div>
+  </div>
+
+  <div class="col-md-2 col-sm-3 col-6 mb-4" (click)="changeGraph('humidity', 'Humidity')">
+    <div class="card_body_sec pb-3">
+      <div class="body_head_div p-1 pl-3 mb-2 ">
+        <h1 class="font-weight-bold"> Humidity </h1>
+      </div>
+      <div class="round_border d-flex justify-content-center">
+        <h3 class="mt-2 count" [ngClass]="humidityColor">
+          <ng2-odometer [number]="currentHumidity" [config]="{ auto: true }"></ng2-odometer>' C|'F
+        </h3>
+      </div>
+
+      <h6 class="range_status text-center">{{humidityLebel}}</h6>
+
+    </div>
+  </div>
+
+
+  <div class="col-md-2 col-sm-3 col-6 mb-4" (click)="changeGraph('co2', 'Co2 level')">
+    <div class="card_body_sec pb-3">
+      <div class="body_head_div p-1 pl-3 mb-2 ">
+        <h1 class="font-weight-bold"> Co2 level </h1>
+      </div>
+      <div class="round_border d-flex justify-content-center">
+        <h3 class="mt-2 count" [ngClass]="co2Color">
+          <ng2-odometer [number]="currentCo2" [config]="{ auto: true }"></ng2-odometer>' C
+        </h3>
+      </div>
+
+      <h6 class="range_status text-center">{{co2Lebel}}</h6>
+
+    </div>
+  </div>
+
+
+
+  <div class="col-md-2 col-sm-3 col-6 mb-4" (click)="changeGraph('co', 'CO level')">
+    <div class="card_body_sec pb-3">
+      <div class="body_head_div p-1 pl-3 mb-2 ">
+        <h1 class="font-weight-bold"> CO level </h1>
+      </div>
+      <div class="round_border d-flex justify-content-center">
+        <h3 class="mt-2 count" [ngClass]="coColor">
+          <ng2-odometer [number]="currentCo" [config]="{ auto: true }"></ng2-odometer>ppm
+        </h3>
+      </div>
+      <h6 class="range_status text-center">{{coLebel}}</h6>
+    </div>
+  </div>
+
+
+  <div class="col-md-2 col-sm-3 col-6 mb-4" (click)="changeGraph('n2', 'N2 level')">
+    <div class="card_body_sec pb-3">
+      <div class="body_head_div p-1 pl-3 mb-2 ">
+        <h1 class="font-weight-bold"> N2 level </h1>
+      </div>
+      <div class="round_border d-flex justify-content-center">
+        <h3 class="mt-2 count" [ngClass]="n2Color">
+          <ng2-odometer [number]="currentN2" [config]="{ auto: true }"></ng2-odometer>' C
+        </h3>
+      </div>
+      <h6 class="range_status text-center">{{n2Lebel}}</h6>
+ 
+    </div>
+  </div>
+
+
+  <div class="col-md-2 col-sm-3 col-6 mb-4" (click)="changeGraph('suspended_particles', 'Sus. Particles level')">
+    <div class="card_body_sec pb-3">
+      <div class="body_head_div p-1 pl-3 mb-2 ">
+        <h1 class="font-weight-bold"> Sus. Particles</h1>
+      </div>
+      <div class="round_border d-flex justify-content-center">
+        <h3 class="mt-2 count" [ngClass]="susPartColor">
+          <ng2-odometer [number]="suspendedParticles" [config]="{ auto: true }"></ng2-odometer>' C
+        </h3>
+      </div>
+      <h6 class="range_status text-center">{{susPartLebel}}</h6>
+    </div>
+  </div>
+</div>
+
+<!-- graph chart code -->
+
+
+
+<div class="row">
+  <div class="col-md-6 col-sm-12 col-12 mb-2">
+    <div class="card mt-0 radius_border">
+      <div class="card-body p-0">
+        <div class="head_cntrl_section radius_border mt-0 mb-0">
+          <div class="row p-0 m-0">
+            <div class="col-md-12 col-sm-12 col-12">
+              <h6>{{chartLabel}}</h6>
+              <a title="dropdown" class="pr-1 dropdown-toggle dropmenu_li_1" data-toggle="dropdown"
+                aria-expanded="true"> <i class="fas fa-chevron-circle-down"></i></a>
+              <a title="fullscreen" class="pl-1 full_screen_icon dropmenu_li_2" (click)="graph1toggle()"> <i
+                  class="fas fa-compress-arrows-alt"></i></a>
+              <div class="dropdown-menu slide_drop_menu">
+                <a class="dropdown-item" *ngFor="let param of parameters"
+                  (click)="changeGraph(param.key, param.Name)">{{param.Name}}</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row slide_down_div" [ngClass]="graph1 ? 'toggle_class_overlay' : ''">
+          <div class="col-md-12 col-sm-12 col-12">
+            <span class="close_default_btn" (click)="graph1toggle()"
+              [ngClass]="grph1_close_button ? 'd-block' : 'd-none'"><i class="fas fa-times"></i></span>
+            <div id="chartdiv" style="width: 100%; height:370px"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6 col-sm-12 col-12">
+    <div class="card mt-0 radius_border">
+      <div class="card-body p-0">
+        <div class="head_cntrl_section radius_border mt-0 mb-0">
+          <div class="row p-0 m-0">
+            <div class="col-md-12 col-sm-12 col-12">
+              <ul class="p-0 mb-0 pr-0">
+                <li> <a title="dropdown" class="pr-1 slide_down_icon2"> <i class="fas fa-chevron-circle-down"></i></a>
+                </li>
+                <li> <a title="fullscreen" class="pl-1 full_screen_icon" (click)="graph2toggle()"> <i
+                      class="fas fa-compress-arrows-alt"></i></a> </li>
+              </ul>
+            </div>
+          </div>
+        </div>  
+
+        <div class="row slide_down_div" [ngClass]="graph2 ? 'toggle_class_overlay' : ''">
+          <div class="col-md-12 col-sm-12 col-12">
+            <span class="close_default_btn" (click)="graph2toggle()"
+              [ngClass]="grph2_close_button ? 'd-block' : 'd-none'"><i class="fas fa-times"></i></span>
+            <div id="liveChart" class="chartdiv" style="width: 100%; height:300px"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,31 @@
+<div class="row">
+
+  <div class="col-md-6 col-sm-12 col-12 mb-3" #charts *ngFor="let param of chartParameters">
+    <div class="card mt-0 radius_border">
+      <div class="card-body p-0">
+        <div class="head_cntrl_section radius_border mt-0 mb-0">
+          <div class="row p-0 m-0">
+            <div class="col-md-12 col-sm-12 col-12">
+                <h6>{{param.Name}}</h6>
+            </div>
+          </div>
+        </div>
+        
+        <div class="row slide_down_div" [ngClass]="graph1 ? 'toggle_class_overlay' : ''">
+          <div class="col-md-8 col-sm-8 col-12 text-center">           
+            <div id="chart_{{param.key}}" style="width: 100%; height:200px"></div>
+          </div>
+
+          <div class="col-md-4 col-sm-4 col-12">
+            <ul class="sub_location_details" *ngIf="subLocations[param.key].length">
+              <li *ngFor="let subLocation of subLocations[param.key]" (click)="homeDashboard(subLocation)"><h6 class="mb-0" style="color: white; cursor: pointer;">{{subLocation.locationName}}</h6></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+
+</div>

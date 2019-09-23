@@ -1,0 +1,67 @@
+<div>
+<div class="row">
+  <div class="col-md-12 col-sm-12">
+    <div class="card">
+      <div class="card-body">
+        <form name="locationform" #f="ngForm" novalidate  (ngSubmit)="f.valid && requiredRange && validRange && onSubmit(f)">
+          <div class="form-group row" *ngIf="isNewLocation || !isNewLocation && locationModel.parentLocation != '0'">
+              <label class="col-sm-3 col-form-label">Parent Location</label>
+              <div class="col-sm-9">              
+                  <select class="form-control" name="location" #parentlocation="ngModel"  [(ngModel)]="locationModel.parentLocation">
+                      <option value="" selected>Select parent location</option>
+                      <option *ngFor="let location of results" [value]="location._id" [selected]="location.parent_id == locationModel.parentLocation"> {{ location.locationName }} </option>
+                    </select>
+              </div>
+          </div>
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label">Name*</label>
+          <div class="col-sm-9">              
+            <input class="form-control" type="text" name="name" placeholder="Location" [(ngModel)]="locationModel.name"
+            required #name="ngModel">
+            <span *ngIf="f.submitted && !name.valid" class="errorMessage">
+              Location is required
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group row" *ngIf="!locationModel.parentLocation || locationModel.parentLocation=='0'">
+          <label class="col-sm-3 col-form-label">Set Parameters range*</label>
+
+          <div class="col-sm-9"> 
+            <div class="row" *ngFor="let parameter of  parameters">
+                <label class="col-md-4 p-0  col-sm-3 col-12 col-form-label text-left sub_label">{{parameter.Name}} Low:</label>
+                <div class="col-md-2 pl-0 mb-2 col-sm-3 col-12">
+                    <input class="form-control" type="number" name="low-{{parameter.key+'low'}}" [(ngModel)]="range[parameter.key]['low']"
+                    required>  
+                </div>                   
+                <label class="col-md-4 pl-1 p-0 col-sm-3 col-12 col-form-label text-left sub_label">{{parameter.Name}} High:</label>    
+                <div class="col-md-2 pl-0 col-sm-3 mb-2 col-12">
+                 <input class="form-control" type="number" name="high-{{parameter.key+'high'}}"  [(ngModel)]="range[parameter.key]['high']"
+                required>
+              </div>       
+            </div>
+            <span *ngIf="f.submitted && !requiredRange" class="errorMessage">Range is required</span>            
+            <span *ngIf="f.submitted && !validRange" class="errorMessage">Range is invalid</span>            
+          </div>            
+        </div>
+       
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label"></label>
+          <div class="col-sm-9">
+              <button *ngIf="!isNewLocation" [disabled]="isSaving" type="submit"
+              class="btn btn-success" (click)="validate()">
+              {{isSaving ? 'Applying Changes' : 'Apply Changes'}}
+            </button>
+            <button *ngIf="isNewLocation" [disabled]="isSaving" type="submit" class="btn btn-primary save_btn" (click)="validate()">
+             <b> <i *ngIf="!isSaving" class='fa fa-save'></i><i *ngIf="isSaving" class='fa fa-circle-o-notch fa-spin'></i>&nbsp;&nbsp;
+              {{isSaving ? 'Creating' : 'Create'}} </b>
+
+            </button>
+            
+          </div>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
